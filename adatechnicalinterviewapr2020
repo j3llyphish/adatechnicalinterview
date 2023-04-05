@@ -1,0 +1,35 @@
+
+carpet = {
+    "berber": 5.09,
+    "texture": 3.69,
+    "pattern": 2.89
+}
+
+addons = {
+    "10yr warranty": 100.00,
+    "delivery": 35.00,
+    "installation": 75.00,
+    "stain guard": 30.00
+}
+
+def calc_options(options):
+    price = 0
+    for i in options:
+      price += addons.get(i)
+    return price
+
+
+def carpet_quote_estimator(room, carpet_type, options, promo_code):
+    room_size = room[0] * room[1]
+    room_quote = room_size * carpet[carpet_type]
+
+    room_quote += calc_options(options)
+
+    if promo_code == "ADAROCKS":
+        promo_code = 75.00
+    else:
+        promo_code = 0
+
+    price = room_quote - promo_code
+
+    return print(f"The cost is ${format(price, '.2f')}")
